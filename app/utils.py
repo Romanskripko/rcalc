@@ -6,15 +6,17 @@ from app import app
 
 
 class Calculations:
+
     def __init__(self, excel_table):
         self.coords = excel_table.to_numpy()
         self.labels = excel_table.columns.values
         self.list_of_c = []
         self.func = 'z = '
         self.graph = ''
+
     def squaretype(self, rcoeff):
         fig = plt.figure()
-        print(self.coords)
+        # print(self.coords)
         ax = plt.axes(projection='3d')
         ax.scatter(self.coords[:, 0], self.coords[:, 1], self.coords[:, 2], marker='^', c='#e31700')
         if self.labels is None:
@@ -31,7 +33,7 @@ class Calculations:
         Xrange = np.linspace(min(self.coords[:, 1]) * 1.5, max(self.coords[:, 1]) * 1.5, 1000)
         V = v.reshape(rcoeff + 1, rcoeff + 1)
         self.list_of_c = V
-        print(V)
+        # print(V)
         x_pow = 0
         y_pow = 0
         for line in V:
@@ -41,7 +43,7 @@ class Calculations:
             x_pow += 1
             y_pow = 0
         self.func = self.func[:-2]
-        print(self.func)
+        # print(self.func)
         Z = pol.polynomial.polygrid2d(Xrange, Yrange, V)
         X, Y = np.meshgrid(Xrange, Yrange)
         ax.plot_surface(X, Y, Z, rstride=10, cstride=10)
