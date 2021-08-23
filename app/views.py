@@ -20,7 +20,7 @@ def index():
                 newfunc = Calculations(clients_table)
                 newfunc.squaretype(int(form.rtype.data))
                 show_pic = True
-                return render_template('main_page.html',
+                return render_template('index.html',
                                        form=form,
                                        list_of_c=newfunc.list_of_c,
                                        func=newfunc.func,
@@ -29,5 +29,4 @@ def index():
                 flash('feed me an xlsx file, pls')
         else:
             flash('pls, feed me an xlsx file')
-        # return redirect(url_for('index'))
-    return render_template('main_page.html', form=form)
+    return render_template('index.html', form=form)
